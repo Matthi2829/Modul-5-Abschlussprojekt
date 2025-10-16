@@ -1,14 +1,17 @@
-public class Charakter {
-    private String name;
-    private int leben = 100;
+public abstract class Charakter {
 
+
+    private String name;
+    private int leben;
     private boolean spezialFaehigkeitAktiv;
 
-    public Charakter(String name, int leben, boolean spezialFaehigkeitAktiv) {
+
+    public Charakter(String name) {
         this.name = name;
-        this.leben = leben;
-        this.spezialFaehigkeitAktiv = spezialFaehigkeitAktiv;
+        this.leben = 100;
+        this.spezialFaehigkeitAktiv = false;
     }
+
 
     public String getName() {
         return name;
@@ -33,4 +36,17 @@ public class Charakter {
     public void setSpezialFaehigkeitAktiv(boolean spezialFaehigkeitAktiv) {
         this.spezialFaehigkeitAktiv = spezialFaehigkeitAktiv;
     }
+
+    public void schadenNehmen(int schaden) {
+        this.leben = Math.max(0, this.leben - schaden);
+
+        System.out.println(name + " hat " + schaden + " Schaden genommen und hat jetzt " + leben + " Lebenspunkte.");
+
+        if (leben == 0) {
+            System.out.println(name + " wurde besiegt!");
+        }
+    }
+
+
+
 }
