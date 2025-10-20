@@ -11,4 +11,14 @@ public class Drachen extends Charakter {
 
     }
 
+    @Override
+    public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
+
+    }
+
+    @Override
+    public void spezialfaehigkeitDeaktivieren() {
+
+    }
+
 }

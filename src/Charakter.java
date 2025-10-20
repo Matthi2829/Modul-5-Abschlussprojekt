@@ -4,12 +4,10 @@ public abstract class Charakter {
     private String name;
     private int leben;
     private boolean spezialFaehigkeitAktiv;
-
-
-    public Charakter(String name) {
+    public Charakter(String name, int leben, boolean spezialFaehigkeitAktiv) {
         this.name = name;
-        this.leben = 100;
-        this.spezialFaehigkeitAktiv = false;
+        this.leben = leben;
+        this.spezialFaehigkeitAktiv = spezialFaehigkeitAktiv;
     }
 
 
@@ -50,6 +48,8 @@ public abstract class Charakter {
     public abstract void angreifen(Charakter gegner);
     public abstract void spezialfaehigkeitAktivieren(Zwerge zwerg);
     public abstract void spezialfaehigkeitDeaktivieren();
+
+
 
 
 

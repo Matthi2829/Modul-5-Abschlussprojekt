@@ -1,44 +1,42 @@
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Zwerge extends Charakter{
+public class Zwerge extends Charakter {
 
 
-    public Zwerge(String name) {
-        super(name);
+    public Zwerge(String name, int leben, boolean spezialFaehigkeitAktiv) {
+        super(name, leben, spezialFaehigkeitAktiv);
     }
-
-
-
 
     @Override
     public void angreifen(Charakter gegner) {
+        int angriff = ThreadLocalRandom.current().nextInt(15,25 +1);
 
-        int angriff = ThreadLocalRandom.current().nextInt(15, 25 +1);
-
-        gegner.setLeben(gegner.getLeben() - angriff);
-
-
-        System.out.println(getName() + " greift " + gegner.getName() + " an und verursacht " + angriff + " Schaden!");
-        System.out.println(gegner.getName() + " hat jetzt noch " + gegner.getLeben() + " Lebenspunkte.");
-    }
-
-    @Override
-    public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
+        if (isSpezialFaehigkeitAktiv()) {
+            double chance = ThreadLocalRandom.current().nextDouble(0.0,1.0);
+            int basis = angriff;
 
 
-
-        if (zwerg.getLeben() < 50)
-        {
-
+            if ((getLeben() <= 10 && chance < 0.7)
+                    || (getLeben() <= 20 && chance < 0.5)
+                    || (getLeben() <= 50 && chance < 0.3)) {
+                angriff *= 2;
+                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Angriff verdoppelt auf " + angriff + ")");
+            } else {
+                angriff /= 2;
+                System.out.println(getName() + " versucht eine Zwergenkopfnuss, aber sie misslingt! (Angriff halbiert auf " + angriff + ")");
+            }
+        } else {
+            System.out.println(getName() + " greift an! (" + angriff + " Schaden)");
         }
 
+        gegner.schadenNehmen(angriff);
+    }
 
+    public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
 
     }
 
     @Override
     public void spezialfaehigkeitDeaktivieren() {
-
     }
-
 }
