@@ -7,6 +7,9 @@ public class Zwerge extends Charakter {
         super(name, leben, spezialFaehigkeitAktiv);
     }
 
+
+
+
     @Override
     public void angreifen(Charakter gegner) {
         int angriff = ThreadLocalRandom.current().nextInt(15,25 +1);
@@ -32,6 +35,9 @@ public class Zwerge extends Charakter {
         gegner.schadenNehmen(angriff);
     }
 
+
+
+
     @Override
     public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
         if (!isSpezialFaehigkeitAktiv() && getLeben() < 50) {
@@ -44,7 +50,17 @@ public class Zwerge extends Charakter {
         }
     }
 
+
+
+
+
     @Override
     public void spezialfaehigkeitDeaktivieren() {
+        if (isSpezialFaehigkeitAktiv()) {
+            setSpezialFaehigkeitAktiv(false);
+            System.out.println(getName() + " deaktiviert 'Zwergenkopfnuss'.");
+        } else {
+            System.out.println(getName() + " hat keine aktive Spezialfähigkeit.");
+        }
     }
 }
