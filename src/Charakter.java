@@ -44,7 +44,7 @@ public abstract class Charakter {
             System.out.println(name + " wurde besiegt!");
         }
     }
-
+                    // abstrakte Methoden, weil sie in den gegebenen Klassen erst programmiert werden sollen.
     public abstract void angreifen(Charakter gegner);
     public abstract void spezialfaehigkeitAktivieren(Charakter charakter);
 

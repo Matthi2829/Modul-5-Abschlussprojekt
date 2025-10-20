@@ -12,10 +12,10 @@ public class Zwerge extends Charakter {
 
     @Override
     public void angreifen(Charakter gegner) {
-        int angriff = ThreadLocalRandom.current().nextInt(15,25 +1);
+        int angriff = ThreadLocalRandom.current().nextInt(15,25 +1); // 15-25 SChaden
 
         if (isSpezialFaehigkeitAktiv()) {
-            double chance = ThreadLocalRandom.current().nextDouble(0.0,1.0);
+            double chance = ThreadLocalRandom.current().nextDouble(0.0,1.0); // Zufallszahl 0.0 - 1.0 generieren lassen
             int basis = angriff;
 
 
@@ -23,13 +23,13 @@ public class Zwerge extends Charakter {
                     || (getLeben() <= 20 && chance < 0.5)
                     || (getLeben() <= 50 && chance < 0.3)) {
                 angriff *= 2;
-                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Angriff verdoppelt auf " + angriff + ")");
+                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Angriff verdoppelt auf " + angriff + ")"); // wird ausgeführt, wenn Zwergenkopfnuss erfolgreich war
             } else {
                 angriff /= 2;
-                System.out.println(getName() + " versucht eine Zwergenkopfnuss, aber sie misslingt! (Angriff halbiert auf " + angriff + ")");
+                System.out.println(getName() + " versucht eine Zwergenkopfnuss, aber sie misslingt! (Angriff halbiert auf " + angriff + ")"); //  wird ausgeführt, wenn Zwergenkopfnuss fehlschlug
             }
         } else {
-            System.out.println(getName() + " greift an! (" + angriff + " Schaden)");
+            System.out.println(getName() + " greift an! (" + angriff + " Schaden)"); // Wird ausgeführt, wenn keine Spezialfähigkeit aktiv ist
         }
 
         gegner.schadenNehmen(angriff);
