@@ -10,10 +10,10 @@ public class Drachen extends Charakter {
 
 
     public void angreifen(Charakter gegner) {
-        int angriff = ThreadLocalRandom.current().nextInt(20, 25 + 1); // 20-25
+        int angriff = ThreadLocalRandom.current().nextInt(20, 25 + 1); //Schaden zwischen 20-25
 
         if (isSpezialFaehigkeitAktiv()) {
-            int malus = ThreadLocalRandom.current().nextInt(5, 10 + 1);
+            int malus = ThreadLocalRandom.current().nextInt(5, 10 + 1); //Schaden zwischen 5-10
             angriff = Math.max(0, angriff - malus);
             System.out.println(getName() + " fliegt und verliert " + malus + " Angriffspunkte!");
         }
@@ -25,9 +25,9 @@ public class Drachen extends Charakter {
 
 
     public void spezialfaehigkeitAktivieren(Charakter charakter) {
-        if (!isSpezialFaehigkeitAktiv()) {
+        if (!isSpezialFaehigkeitAktiv()) { //if Spezialfähigkeit = nicht true
             setSpezialFaehigkeitAktiv(true);
-            setLeben(getLeben() + 10);
+            setLeben(getLeben() + 10); //Leben + 1ß
             System.out.println(getName() + " aktiviert die Spezialfähigkeit 'Fliegen'! (+10 Leben)");
         } else {
             System.out.println("Spezialfähigkeit 'Fliegen' ist bereits aktiv!");
