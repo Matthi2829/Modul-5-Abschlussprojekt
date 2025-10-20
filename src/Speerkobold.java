@@ -32,7 +32,7 @@ public class Speerkobold extends Charakter{
 
 
     @Override
-    public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
+    public void spezialfaehigkeitAktivieren(Charakter charakter) {
 
     }
 

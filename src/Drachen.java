@@ -24,7 +24,7 @@ public class Drachen extends Charakter {
     }
 
 
-    public void spezialfaehigkeitAktivieren() {
+    public void spezialfaehigkeitAktivieren(Charakter charakter) {
         if (!isSpezialFaehigkeitAktiv()) {
             setSpezialFaehigkeitAktiv(true);
             setLeben(getLeben() + 10);

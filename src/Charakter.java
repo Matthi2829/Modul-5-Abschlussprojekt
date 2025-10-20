@@ -4,7 +4,7 @@ public abstract class Charakter {
     private String name;
     private int leben;
     private boolean spezialFaehigkeitAktiv;
-    public Charakter(String name, int leben, boolean spezialFaehigkeitAktiv) {
+
 
 
     public Charakter(String name, int leben, boolean spezialFaehigkeitAktiv) {
@@ -49,7 +49,7 @@ public abstract class Charakter {
     }
 
     public abstract void angreifen(Charakter gegner);
-    public abstract void spezialfaehigkeitAktivieren(Zwerge zwerg);
+    public abstract void spezialfaehigkeitAktivieren(Charakter charakter);
     public abstract void spezialfaehigkeitDeaktivieren();
 
 
