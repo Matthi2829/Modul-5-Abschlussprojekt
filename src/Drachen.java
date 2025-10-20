@@ -1,7 +1,7 @@
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Drachen extends Charakter {
-    private Random rand = new Random();
+
 
     public Drachen(String name, int leben, boolean Spezialfaehigkeit) {
         super(name, leben, Spezialfaehigkeit);
@@ -9,17 +9,25 @@ public class Drachen extends Charakter {
     }
 
     public void angreifen(Charakter gegner) {
-        int angriff = rand.nextInt(6) + 20; //gibt eine Zahl von 1-5 aus und dann + 20
+        int angriff = ThreadLocalRandom.current().nextInt(20, 25 + 1);
 
-        if (isSpezialFaehigkeitAktiv()) {
-            int malus = rand.nextInt(6) + 5;
-            angriff -= malus;
+        gegner.schadenNehmen(angriff);
+        System.out.println("Klauenangriff des " + getName() + ":" + angriff);
+        System.out.println(gegner.getName() + "hat noch " + getLeben() + "Leben");
+    }
 
-            System.out.println(getName() + " greift aus der Luft aus (Malus):" + malus);
-        } else {
-            System.out.println(getName() + " greift mit Feueratem an!");
+    @Override
+    public void spezialfaehigkeitAktivieren() {
+        if (!isSpezialFaehigkeitAktiv()){
+            setSpezialFaehigkeitAktiv(true);
+            setLeben(getLeben() + 10);
+
         }
+    }
 
+
+    @Override
+    public void spezialfaehigkeitDeaktivieren() {
 
     }
 
