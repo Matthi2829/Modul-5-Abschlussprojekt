@@ -36,7 +36,7 @@ public class Drachen extends Charakter {
 
 
     public void spezialfaehigkeitDeaktivieren() {
-        if (isSpezialFaehigkeitAktiv()) {
+        if (isSpezialFaehigkeitAktiv()) { //if Spezialfähigkeit = true
             setSpezialFaehigkeitAktiv(false);
             setLeben(Math.max(0, getLeben() - 10));
             System.out.println(getName() + " deaktiviert 'Fliegen'. (-10 Leben)");
