@@ -35,11 +35,8 @@ public class Zwerge extends Charakter {
         gegner.schadenNehmen(angriff);
     }
 
-
-
-
     @Override
-    public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
+    public void spezialfaehigkeitAktivieren(Charakter charakter) {
         if (!isSpezialFaehigkeitAktiv() && getLeben() < 50) {
             setSpezialFaehigkeitAktiv(true);
             System.out.println(getName() + " aktiviert die Spezialfähigkeit 'Zwergenkopfnuss'!");
@@ -49,7 +46,6 @@ public class Zwerge extends Charakter {
             System.out.println(getName() + " kann 'Zwergenkopfnuss' nur unter 50 Lebenspunkten aktivieren!");
         }
     }
-
 
 
 

@@ -11,13 +11,13 @@ public class Speerkobold extends Charakter{
         int angriff = ThreadLocalRandom.current().nextInt(15, 21); // 15–20 Schaden
 
         if (isSpezialFaehigkeitAktiv()) {
-            double chance = ThreadLocalRandom.current().nextDouble(0.0, 1.0);
+            double chance = ThreadLocalRandom.current().nextDouble(0.0, 1.0); // 0.0 - 1.0 Double generiert
 
-            if ((getLeben() <= 10 && chance < 0.7)
+            if ((getLeben() <= 10 && chance < 0.7) // Chatgpt generiert, Hilfe!!!
                     || (getLeben() <= 20 && chance < 0.5)
                     || (getLeben() <= 50 && chance < 0.3)) {
 
-                angriff += 5;
+                angriff += 5; // Spezialfähigkeit ist aktiviert | SChaden +5
                 System.out.println(getName() + " wirft einen tödlichen Giftspeer! (+5 Giftschaden, insgesamt " + angriff + ")");
             } else {
 
@@ -30,11 +30,11 @@ public class Speerkobold extends Charakter{
         gegner.schadenNehmen(angriff);
     }
 
-
     @Override
-    public void spezialfaehigkeitAktivieren(Zwerge zwerg) {
+    public void spezialfaehigkeitAktivieren(Charakter charakter) {
 
     }
+
 
     @Override
     public void spezialfaehigkeitDeaktivieren() {

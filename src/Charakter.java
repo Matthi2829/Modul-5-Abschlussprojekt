@@ -46,7 +46,8 @@ public abstract class Charakter {
     }
 
     public abstract void angreifen(Charakter gegner);
-    public abstract void spezialfaehigkeitAktivieren(Zwerge zwerg);
+    public abstract void spezialfaehigkeitAktivieren(Charakter charakter);
+
     public abstract void spezialfaehigkeitDeaktivieren();
 
 
