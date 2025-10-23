@@ -10,6 +10,11 @@ public class Speerkobold extends Charakter{
     public void angreifen(Charakter gegner) {
         int angriff = ThreadLocalRandom.current().nextInt(15, 21); // 15–20 Schaden
 
+        if (gegner.getLeben() <= 0)
+        {
+            System.out.println("Gegner wurde bereits besiegt! Angriff nicht möglich.\n");
+            return;
+        }
         if (isSpezialFaehigkeitAktiv()) {
             double chance = ThreadLocalRandom.current().nextDouble(0.0, 1.0); // 0.0 - 1.0 Double generiert
 
@@ -32,12 +37,26 @@ public class Speerkobold extends Charakter{
 
     @Override
     public void spezialfaehigkeitAktivieren(Charakter charakter) {
+        if (!isSpezialFaehigkeitAktiv()) {
+            setSpezialFaehigkeitAktiv(true);
+            setLeben(getLeben() + 15);
+            System.out.println(getName() + " aktiviert die Spezialfähigkeit 'Giftpfeil'! (+15 Leben)");
+        } else {
+            System.out.println("Spezialfähigkeit 'Giftpfeil' ist bereits aktiv!");
+        }
 
     }
 
 
     @Override
     public void spezialfaehigkeitDeaktivieren() {
-
+        if (isSpezialFaehigkeitAktiv()) {
+            setSpezialFaehigkeitAktiv(false);
+            setLeben(Math.max(0, getLeben() - 15));
+            System.out.println(getName() + " deaktiviert 'Giftpfeil'. (-15 Leben)");
+        } else {
+            System.out.println("Spezialfähigkeit 'Giftpfeil' ist nicht aktiv!");
+        }
     }
 }
+

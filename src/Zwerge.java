@@ -12,14 +12,19 @@ public class Zwerge extends Charakter {
 
     @Override
     public void angreifen(Charakter gegner) {
-        int angriff = ThreadLocalRandom.current().nextInt(15,25 +1); // 15-25 SChaden
+        int angriff = ThreadLocalRandom.current().nextInt(15,25 +1);// 15-25 SChaden
 
+        if (gegner.getLeben() <= 0)
+        {
+            System.out.println("Gegner wurde bereits besiegt! Angriff nicht möglich.\n");
+            return;
+        }
         if (isSpezialFaehigkeitAktiv()) {
             double chance = ThreadLocalRandom.current().nextDouble(0.0,1.0); // Zufallszahl 0.0 - 1.0 generieren lassen
             int basis = angriff;
 
 
-            if ((getLeben() <= 10 && chance < 0.7)
+            if ((getLeben() <= 10 && chance < 0.7) // Chatgpt generiert, Hilfe!!!
                     || (getLeben() <= 20 && chance < 0.5)
                     || (getLeben() <= 50 && chance < 0.3)) {
                 angriff *= 2;

@@ -12,6 +12,11 @@ public class Drachen extends Charakter {
     public void angreifen(Charakter gegner) {
         int angriff = ThreadLocalRandom.current().nextInt(20, 25 + 1); // 20-25
 
+        if (gegner.getLeben() <= 0)
+        {
+            System.out.println("Gegner wurde bereits besiegt! Angriff nicht möglich.\n");
+            return;
+        }
         if (isSpezialFaehigkeitAktiv()) {
             int malus = ThreadLocalRandom.current().nextInt(5, 10 + 1);
             angriff = Math.max(0, angriff - malus);
