@@ -32,7 +32,7 @@ public class Zwerge extends Charakter {
                     || (getLeben() <= 20 && chance < 0.5)
                     || (getLeben() <= 50 && chance < 0.3)) {
                 angriff *= 2;
-                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Angriff verdoppelt auf " + angriff + ")");
+                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Basis: " + basis + ", verdoppelt auf " + angriff + ")");
             } else {
                 angriff /= 2;
                 System.out.println(getName() + " versucht eine Zwergenkopfnuss, aber sie misslingt! (Angriff halbiert auf " + angriff + ")");
