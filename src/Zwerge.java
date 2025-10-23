@@ -2,46 +2,52 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Zwerge extends Charakter {
 
-
     public Zwerge(String name, int leben, boolean spezialFaehigkeitAktiv) {
         super(name, leben, spezialFaehigkeitAktiv);
     }
 
-
-
-
     @Override
     public void angreifen(Charakter gegner) {
-        int angriff = ThreadLocalRandom.current().nextInt(15,25 +1);// 15-25 SChaden
-
-        if (gegner.getLeben() <= 0)
-        {
-            System.out.println("Gegner wurde bereits besiegt! Angriff nicht möglich.\n");
-            return;
-        }
+        // Zuerst prüfen, ob der Angreifer selbst noch lebt
         if (getLeben() <= 0) {
             System.out.println(getName() + " ist besiegt und kann nicht mehr angreifen!\n");
             return; // Methode abbrechen
         }
+
+        // Danach prüfen, ob der Gegner schon tot ist
+        if (gegner.getLeben() <= 0) {
+            System.out.println("Gegner " + gegner.getName() + " wurde bereits besiegt! Angriff nicht möglich.\n");
+            return; // Methode abbrechen
+        }
+
+        // Angriffswert zwischen 15–25 Schaden
+        int angriff = ThreadLocalRandom.current().nextInt(15, 25 + 1);
+
         if (isSpezialFaehigkeitAktiv()) {
-            double chance = ThreadLocalRandom.current().nextDouble(0.0,1.0); // Zufallszahl 0.0 - 1.0 generieren lassen
+            double chance = ThreadLocalRandom.current().nextDouble(0.0, 1.0); // Zufallszahl 0.0–1.0
             int basis = angriff;
 
-
-            if ((getLeben() <= 10 && chance < 0.7) // Chatgpt generiert, Hilfe!!!
+            // Zwergenkopfnuss – Erfolg oder Fehlschlag je nach Lebenspunkten und Zufall
+            if ((getLeben() <= 10 && chance < 0.7)
                     || (getLeben() <= 20 && chance < 0.5)
                     || (getLeben() <= 50 && chance < 0.3)) {
                 angriff *= 2;
-                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Angriff verdoppelt auf " + angriff + ")"); // wird ausgeführt, wenn Zwergenkopfnuss erfolgreich war
+                System.out.println(getName() + " landet eine erfolgreiche Zwergenkopfnuss! (Angriff verdoppelt auf " + angriff + ")");
             } else {
                 angriff /= 2;
-                System.out.println(getName() + " versucht eine Zwergenkopfnuss, aber sie misslingt! (Angriff halbiert auf " + angriff + ")"); //  wird ausgeführt, wenn Zwergenkopfnuss fehlschlug
+                System.out.println(getName() + " versucht eine Zwergenkopfnuss, aber sie misslingt! (Angriff halbiert auf " + angriff + ")");
             }
         } else {
-            System.out.println(getName() + " greift an! (" + angriff + " Schaden)"); // Wird ausgeführt, wenn keine Spezialfähigkeit aktiv ist
+            System.out.println(getName() + " greift an! (" + angriff + " Schaden)");
         }
 
+        // Schaden zufügen
         gegner.schadenNehmen(angriff);
+
+        // Wenn der Gegner jetzt besiegt ist, ausgeben
+        if (gegner.getLeben() <= 0) {
+            System.out.println(gegner.getName() + " wurde besiegt!\n");
+        }
     }
 
     @Override
@@ -55,9 +61,6 @@ public class Zwerge extends Charakter {
             System.out.println(getName() + " kann 'Zwergenkopfnuss' nur unter 50 Lebenspunkten aktivieren!");
         }
     }
-
-
-
 
     @Override
     public void spezialfaehigkeitDeaktivieren() {
