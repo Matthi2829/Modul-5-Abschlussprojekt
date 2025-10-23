@@ -15,6 +15,11 @@ public class Speerkobold extends Charakter{
             System.out.println("Gegner wurde bereits besiegt! Angriff nicht möglich.\n");
             return;
         }
+
+        if (getLeben() <= 0) {
+            System.out.println(getName() + " ist besiegt und kann nicht mehr angreifen!\n");
+            return; // Methode abbrechen
+        }
         if (isSpezialFaehigkeitAktiv()) {
             double chance = ThreadLocalRandom.current().nextDouble(0.0, 1.0); // 0.0 - 1.0 Double generiert
 

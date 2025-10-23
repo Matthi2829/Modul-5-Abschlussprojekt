@@ -17,6 +17,11 @@ public class Drachen extends Charakter {
             System.out.println("Gegner wurde bereits besiegt! Angriff nicht möglich.\n");
             return;
         }
+
+        if (getLeben() <= 0) {
+            System.out.println(getName() + " ist besiegt und kann nicht mehr angreifen!\n");
+            return; // Methode abbrechen
+        }
         if (isSpezialFaehigkeitAktiv()) {
             int malus = ThreadLocalRandom.current().nextInt(5, 10 + 1); //Schaden zwischen 5-10
             angriff = Math.max(0, angriff - malus);
