@@ -4,6 +4,7 @@ public abstract class Charakter {
     private String name;
     private int leben;
     private boolean spezialFaehigkeitAktiv;
+
     public Charakter(String name, int leben, boolean spezialFaehigkeitAktiv) {
         this.name = name;
         this.leben = leben;
